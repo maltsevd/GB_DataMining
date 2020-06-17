@@ -3,10 +3,12 @@ import requests
 from pprint import pprint
 import hashlib
 import json
+from datetime import datetime
 
 main_link = 'https://spb.hh.ru'
 search_link ='/search/vacancy'
-
+fields = ['_id', 'name', 'salary_min', 'salary_max', 'salary_curr',
+          'vac_url', 'employer', 'employer_url', 'employer_addr', 'updated_at']
 
 # Find next page if exists
 def get_next_url(soup):
@@ -39,10 +41,9 @@ def parse_salary(bs_obj):
 
 
 def fill_vacancies_dict(vacancies):
-    result = set()
+    result = []
     for var in vacancies:
-        vacancy = dict.fromkeys(['_id', 'name', 'salary_min', 'salary_max', 'salary_curr',
-                        'vac_url', 'employer', 'employer_url', 'employer_addr'])
+        vacancy = dict.fromkeys(fields)
         salary = parse_salary(var)
         title = var.find('a', attrs={'data-qa': 'vacancy-serp__vacancy-title'})
         employer = var.find('a', attrs={'data-qa': 'vacancy-serp__vacancy-employer'})
@@ -65,8 +66,9 @@ def fill_vacancies_dict(vacancies):
             else:
                 vacancy['employer_addr'] = employer_addr.contents[0]
         str_for_hash = str(result).encode('utf-8')
+        vacancy['updated_at'] = datetime.today().strftime('%d.%m.%Y')
         vacancy['_id'] = hashlib.md5(str_for_hash).hexdigest()
-        result.add(vacancy)
+        result.append(vacancy)
     return result
 
 
@@ -91,8 +93,7 @@ while next_url:
         next_url = None
 
 # Put response variables in result dict
-result = dict.fromkeys(['_id', 'name', 'salary_min', 'salary_max', 'salary_curr',
-                        'vac_url', 'employer', 'employer_url', 'employer_addr'])
+result = dict.fromkeys(fields)
 
 result = fill_vacancies_dict(vacancies)
 pprint(result)

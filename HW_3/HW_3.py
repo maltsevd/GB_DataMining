@@ -1,5 +1,6 @@
 from pymongo import MongoClient
 import json
+from hh_parser.hh_parser import get_vacancies
 
 # Connecting to database
 client = MongoClient('localhost', 27017)
@@ -13,7 +14,7 @@ with open('hh.json', 'r') as f:
 
 
 # Fill database with json values
-def fill_db(json_obj):
+def fill_db_json(json_obj):
     collection.insert_many(json_obj)
 
 
@@ -25,4 +26,11 @@ def find_salary(value, db_obj):
     return cursor
 
 
-find_salary(30000, collection)
+def fill_db_site():
+    vacancies = get_vacancies('Data science')
+    x = collection.update_many({}, {'$set': vacancies})
+    print(x)
+# find_salary(30000, collection)
+
+
+fill_db_site()
