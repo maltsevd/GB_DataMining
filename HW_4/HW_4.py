@@ -1,8 +1,6 @@
 from lxml import html
 import requests
-import json
 import datetime
-from pprint import pprint
 from pymongo import MongoClient
 
 # Connecting to database
