@@ -65,9 +65,9 @@ def fill_vacancies_dict(vacancies):
                 vacancy['employer_addr'] = employer_addr.contents[0] + metro_station.contents[1]
             else:
                 vacancy['employer_addr'] = employer_addr.contents[0]
-        str_for_hash = str(result).encode('utf-8')
-        vacancy['updated_at'] = datetime.today().strftime('%d.%m.%Y')
+        str_for_hash = str(vacancy).encode('utf-8')
         vacancy['_id'] = hashlib.md5(str_for_hash).hexdigest()
+        vacancy['updated_at'] = datetime.today().strftime('%d.%m.%Y')
         result.append(vacancy)
     return result
 

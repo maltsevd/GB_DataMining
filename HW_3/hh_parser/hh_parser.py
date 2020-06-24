@@ -66,7 +66,7 @@ def fill_vacancies_dict(vacancies):
             else:
                 vacancy['employer_addr'] = employer_addr.contents[0]
         # Hash vacancy info to generate unique _id
-        str_for_hash = str(result).encode('utf-8')
+        str_for_hash = str(vacancy).encode('utf-8')
         vacancy['updated_at'] = datetime.today().strftime('%d.%m.%Y')
         vacancy['_id'] = hashlib.md5(str_for_hash).hexdigest()
         result.append(vacancy)
