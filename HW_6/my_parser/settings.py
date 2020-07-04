@@ -65,7 +65,7 @@ COOKIES_ENABLED = True
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'HW_6.my_parser.pipelines.LeroyPhotosPipeline': 300,
+   'HW_6.my_parser.pipelines.MyParserPipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
