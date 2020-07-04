@@ -9,11 +9,13 @@
 
 BOT_NAME = 'my_parser'
 
-SPIDER_MODULES = ['HW_6.my_parser.spiders']
-NEWSPIDER_MODULE = 'HW_6.my_parser.spiders'
+SPIDER_MODULES = ['HW_7.my_parser.spiders']
+NEWSPIDER_MODULE = 'HW_7.my_parser.spiders'
 
 LOG_ENABLED = True
-LOG_LEVEL = 'DEBUG' #INFO ERROR
+LOG_LEVEL = 'DEBUG'
+
+IMAGES_STORE = 'images'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'
@@ -65,7 +67,8 @@ COOKIES_ENABLED = True
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'HW_6.my_parser.pipelines.LeroyPhotosPipeline': 300,
+   'HW_7.my_parser.pipelines.LeroyPhotosPipeline': 300,
+   'HW_7.my_parser.pipelines.MongoPipeline': 400,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
