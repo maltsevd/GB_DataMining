@@ -12,8 +12,8 @@ class InstaSpider(scrapy.Spider):
     name = 'insta'
     allowed_domains = ['instagram.com']
     start_urls = ['https://instagram.com/']
-    insta_login = 'burma.roman'
-    insta_pwd = '#PWD_INSTAGRAM_BROWSER:9:1594054341:AVdQAAkY/qHdeF5Uw8YHVtnOdlgAuRmddvVwd2JKVLlxIZ1RnptR0df1LGraAfMcRd5qEiimbB/FZ+c667pvpsuAqo5TbgTkkSrfiT0XVYl7RG1PxFQfK9j+iFN+5lZkJyITHphQ0usbzxGHmfsLMQ=='
+    insta_login = ''
+    insta_pwd = ''
     inst_login_link = 'https://www.instagram.com/accounts/login/ajax/'
     parse_user = ['aiwithpython', 'eidos_wed']
 
